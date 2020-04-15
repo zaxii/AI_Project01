@@ -1,5 +1,5 @@
 import numpy as np
-from element import Element as E
+from element import Element as e
 
 
 class AIMazeFindPath:
@@ -16,11 +16,11 @@ class AIMazeFindPath:
         #
         # TODO: transform maze to reward
         #
-        self.maze = [[E.PASS, E.PASS, E.PASS, E.PASS],
-                     [E.PASS, E.BLOCK, E.PASS, E.PASS],
-                     [E.PASS, E.PASS, E.PASS, E.PASS],
-                     [E.PASS, E.PASS, E.TRAP, E.PASS],
-                     [E.PASS, E.PASS, E.PASS, E.TERMINAL]]
+        self.maze = [[e.PASS, e.PASS, e.PASS, e.PASS],
+                     [e.PASS, e.BLOCK, e.PASS, e.PASS],
+                     [e.PASS, e.PASS, e.PASS, e.PASS],
+                     [e.PASS, e.PASS, e.TRAP, e.PASS],
+                     [e.PASS, e.PASS, e.PASS, e.TERMINAL]]
 
         self.reward = [[0, 0, 0, 0],
                        [0, -1, 0, 0],
@@ -57,9 +57,9 @@ class AIMazeFindPath:
                 sigma_up = self.percent_move_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 sigma_rightup = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
             else:
-                if self.maze[x - 1][y] == E.BLOCK:
+                if self.maze[x - 1][y] == e.BLOCK:
                     value_next = self.value[now_depth][x][y]
-                elif self.maze[x - 1][y] == E.TRAP:
+                elif self.maze[x - 1][y] == e.TRAP:
                     value_next = self.value[now_depth][self.initial_x][self.initial_y]
                 else:
                     value_next = self.value[now_depth][x - 1][y]
@@ -68,17 +68,17 @@ class AIMazeFindPath:
                 if y == 0:
                     sigma_leftup = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
 
-                    if self.maze[x - 1][y + 1] == E.BLOCK:
+                    if self.maze[x - 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y + 1] == E.TRAP:
+                    elif self.maze[x - 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y + 1]
                     sigma_rightup = self.percent_move_not_accurate * (self.reward[x - 1][y + 1] + self.gamma * value_next)
                 elif y + 1 == self.y_size:
-                    if self.maze[x - 1][y - 1] == E.BLOCK:
+                    if self.maze[x - 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y - 1] == E.TRAP:
+                    elif self.maze[x - 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y - 1]
@@ -86,17 +86,17 @@ class AIMazeFindPath:
 
                     sigma_rightup = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 else:
-                    if self.maze[x - 1][y - 1] == E.BLOCK:
+                    if self.maze[x - 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y - 1] == E.TRAP:
+                    elif self.maze[x - 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y - 1]
                     sigma_leftup = self.percent_move_not_accurate * (self.reward[x - 1][y - 1] + self.gamma * value_next)
 
-                    if self.maze[x - 1][y + 1] == E.BLOCK:
+                    if self.maze[x - 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y + 1] == E.TRAP:
+                    elif self.maze[x - 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y + 1]
@@ -108,9 +108,9 @@ class AIMazeFindPath:
                 sigma_down = self.percent_move_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 sigma_rightdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
             else:
-                if self.maze[x + 1][y] == E.BLOCK:
+                if self.maze[x + 1][y] == e.BLOCK:
                     value_next = self.value[now_depth][x][y]
-                elif self.maze[x + 1][y] == E.TRAP:
+                elif self.maze[x + 1][y] == e.TRAP:
                     value_next = self.value[now_depth][self.initial_x][self.initial_y]
                 else:
                     value_next = self.value[now_depth][x + 1][y]
@@ -119,17 +119,17 @@ class AIMazeFindPath:
                 if y == 0:
                     sigma_leftdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
 
-                    if self.maze[x + 1][y + 1] == E.BLOCK:
+                    if self.maze[x + 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y + 1] == E.TRAP:
+                    elif self.maze[x + 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y + 1]
                     sigma_rightdown = self.percent_move_not_accurate * (self.reward[x + 1][y + 1] + self.gamma * value_next)
                 elif y + 1 == self.y_size:
-                    if self.maze[x + 1][y - 1] == E.BLOCK:
+                    if self.maze[x + 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y - 1] == E.TRAP:
+                    elif self.maze[x + 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y - 1]
@@ -137,17 +137,17 @@ class AIMazeFindPath:
 
                     sigma_rightdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 else:
-                    if self.maze[x + 1][y - 1] == E.BLOCK:
+                    if self.maze[x + 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y - 1] == E.TRAP:
+                    elif self.maze[x + 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y - 1]
                     sigma_leftdown = self.percent_move_not_accurate * (self.reward[x + 1][y - 1] + self.gamma * value_next)
 
-                    if self.maze[x + 1][y + 1] == E.BLOCK:
+                    if self.maze[x + 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y + 1] == E.TRAP:
+                    elif self.maze[x + 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y + 1]
@@ -159,9 +159,9 @@ class AIMazeFindPath:
                 sigma_left = self.percent_move_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 sigma_leftdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
             else:
-                if self.maze[x][y - 1] == E.BLOCK:
+                if self.maze[x][y - 1] == e.BLOCK:
                     value_next = self.value[now_depth][x][y]
-                elif self.maze[x][y - 1] == E.TRAP:
+                elif self.maze[x][y - 1] == e.TRAP:
                     value_next = self.value[now_depth][self.initial_x][self.initial_y]
                 else:
                     value_next = self.value[now_depth][x][y - 1]
@@ -170,17 +170,17 @@ class AIMazeFindPath:
                 if x == 0:
                     sigma_leftup = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
 
-                    if self.maze[x + 1][y - 1] == E.BLOCK:
+                    if self.maze[x + 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y - 1] == E.TRAP:
+                    elif self.maze[x + 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y - 1]
                     sigma_leftdown = self.percent_move_not_accurate * (self.reward[x + 1][y - 1] + self.gamma * value_next)
                 elif x + 1 == self.x_size:
-                    if self.maze[x - 1][y - 1] == E.BLOCK:
+                    if self.maze[x - 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y - 1] == E.TRAP:
+                    elif self.maze[x - 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y - 1]
@@ -188,17 +188,17 @@ class AIMazeFindPath:
 
                     sigma_leftdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 else:
-                    if self.maze[x - 1][y - 1] == E.BLOCK:
+                    if self.maze[x - 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y - 1] == E.TRAP:
+                    elif self.maze[x - 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y - 1]
                     sigma_leftup = self.percent_move_not_accurate * (self.reward[x - 1][y - 1] + self.gamma * value_next)
 
-                    if self.maze[x + 1][y - 1] == E.BLOCK:
+                    if self.maze[x + 1][y - 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y - 1] == E.TRAP:
+                    elif self.maze[x + 1][y - 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y - 1]
@@ -210,9 +210,9 @@ class AIMazeFindPath:
                 sigma_right = self.percent_move_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 sigma_rightdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
             else:
-                if self.maze[x][y + 1] == E.BLOCK:
+                if self.maze[x][y + 1] == e.BLOCK:
                     value_next = self.value[now_depth][x][y]
-                elif self.maze[x][y + 1] == E.TRAP:
+                elif self.maze[x][y + 1] == e.TRAP:
                     value_next = self.value[now_depth][self.initial_x][self.initial_y]
                 else:
                     value_next = self.value[now_depth][x][y + 1]
@@ -221,17 +221,17 @@ class AIMazeFindPath:
                 if x == 0:
                     sigma_rightup = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
 
-                    if self.maze[x + 1][y + 1] == E.BLOCK:
+                    if self.maze[x + 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y + 1] == E.TRAP:
+                    elif self.maze[x + 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y + 1]
                     sigma_rightdown = self.percent_move_not_accurate * (self.reward[x + 1][y + 1] + self.gamma * value_next)
                 elif x + 1 == self.x_size:
-                    if self.maze[x - 1][y + 1] == E.BLOCK:
+                    if self.maze[x - 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y + 1] == E.TRAP:
+                    elif self.maze[x - 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y + 1]
@@ -239,17 +239,17 @@ class AIMazeFindPath:
 
                     sigma_rightdown = self.percent_move_not_accurate * (self.reward_override + self.gamma * self.value[now_depth][x][y])
                 else:
-                    if self.maze[x - 1][y + 1] == E.BLOCK:
+                    if self.maze[x - 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x - 1][y + 1] == E.TRAP:
+                    elif self.maze[x - 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x - 1][y + 1]
                     sigma_rightup = self.percent_move_not_accurate * (self.reward[x - 1][y + 1] + self.gamma * value_next)
 
-                    if self.maze[x + 1][y + 1] == E.BLOCK:
+                    if self.maze[x + 1][y + 1] == e.BLOCK:
                         value_next = self.value[now_depth][x][y]
-                    elif self.maze[x + 1][y + 1] == E.TRAP:
+                    elif self.maze[x + 1][y + 1] == e.TRAP:
                         value_next = self.value[now_depth][self.initial_x][self.initial_y]
                     else:
                         value_next = self.value[now_depth][x + 1][y + 1]
