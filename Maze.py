@@ -158,7 +158,7 @@ class Maze(tk.Tk, object):
             self.canvas.move(self.rect, -base_action[0], -base_action[1])
             s_ = self.canvas.coords(self.rect)
         elif s_ == self.canvas.coords(self.hell2):
-            reward = -99999
+            reward = -1
             done = True
             s_ = 'terminal'
         else:

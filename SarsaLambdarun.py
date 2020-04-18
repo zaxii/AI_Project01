@@ -43,7 +43,7 @@ def update():
 
 if __name__ == "__main__":
     env = Maze()
-    RL = SarsaTable(actions=list(range(env.n_actions)))
+    RL = SarsaLamdaTable(actions=list(range(env.n_actions)))
 
     env.after(100, update)
     env.mainloop()
