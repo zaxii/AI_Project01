@@ -36,7 +36,7 @@ class RL(object):
 
 class SarsaTable(RL):
 
-    def __init__(self, actions, learning_rate=0.3, reward_decay=0.9, e_greedy=0.99):
+    def __init__(self, actions, learning_rate=0.1 , reward_decay=1, e_greedy=0.99):
         super(SarsaTable, self).__init__(actions, learning_rate, reward_decay, e_greedy)
 
     def learn(self, s, a, r, s_, a_):
@@ -51,7 +51,7 @@ class SarsaTable(RL):
 
 class SarsaLamdaTable(RL):
 
-    def __init__(self, actions, learning_rate=0.1, reward_decay=0.9, e_greedy=0.9, lambda_=0.9):
+    def __init__(self, actions, learning_rate=0.1, reward_decay=1, e_greedy=0.99, lambda_=0.9):
         super(SarsaLamdaTable, self).__init__(actions, learning_rate, reward_decay, e_greedy)
 
         self.lambda_ = lambda_
