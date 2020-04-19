@@ -31,7 +31,7 @@ def gen_path(w=10, h=10):
         path[pt[0]][pt[1]] = 1
 
 
-def gen_block(num=20):
+def gen_block(num=5):
     if num > 0.4 * XSIZE * YSIZE:
         num = math.floor(0.4 * XSIZE * YSIZE)
     count = 0
@@ -41,7 +41,7 @@ def gen_block(num=20):
             maze[x][y] = -1
             count += 1
 
-def gen_trap(num=10):
+def gen_trap(num=3):
     if num > 0.4 * XSIZE * YSIZE:
         num = math.floor(0.4 * XSIZE * YSIZE)
     count = 0
@@ -53,8 +53,8 @@ def gen_trap(num=10):
 
 
 if __name__ == '__main__':
-    block = 20
-    trap = 10
+    block = 5
+    trap = 3
     if len(sys.argv) == 3:
         block = int(sys.argv[1])
         trap = int(sys.argv[2])
