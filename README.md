@@ -28,7 +28,27 @@ python SarsaLambdarun.py –show
 
 运行结束之后会保存折线图至./SarsaLambda.jpg
 
--------
+--------
+
+**Markov、Qlearning与ui运行说明：**
+
+python Markov.py
+
+直接运行文件会生成一个随机地图并进行五十次迭代，每次迭代会将找到终点的步数的平均值生成一张折线图。
+
+--------
+
+python Qlearning.py
+
+直接运行文件会生成一个随机地图并进行五十次迭代，每次迭代会将找到终点的步数的平均值生成一张折线图。
+
+python ui.py
+
+点击Markov(Qlearning)切换算法，reset重新生成地图，start开始寻路， N 显示迭代次数。为了可视化的需要，每一步会存在一定的时间间隔，因此设置了一个最大步数，防止时间过长。
+
+
+
+
 
 **即时回报参数:**
 
